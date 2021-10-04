@@ -26,7 +26,12 @@ console.warn(
 );
 
 console.log(
-  person.name + ' ' + person.surname + ' are ' + person.age + ' ani.',
+  person.name +
+    ' ' +
+    person.surname +
+    ' are ' +
+    person.age.toString() +
+    ' ani.',
 );
 
 console.warn('Afiseaza fraza xxx s-a nascut in aaaa');
@@ -36,6 +41,9 @@ console.log(
     ' ' +
     person.surname +
     ' s-a nascut in ' +
-    (2021 - person.age) +
+    (2021 - person.age).toString() +
     '.',
 );
+
+console.log(person.name);
+console.log(person.age);
