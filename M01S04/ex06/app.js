@@ -147,3 +147,83 @@ console.warn(`
 for (i = skillsLength - 1; i >= 0; i--) {
   console.log(person.skills[i]);
 }
+
+console.warn(`Folosind obiectul person si
+un for, afiseaza in consola skillurile pe care le are persoana`);
+for (i = 0; i < person.skills.length; i++) {
+  console.log(person.skills[i]);
+}
+
+console.warn(`In mod similar, afiseaza skillurile care incep cu c `);
+for (i = 0; i < person.skills.length; i++) {
+  if (person.skills[i].charAt(0) == 'c') {
+    console.log(person.skills[i]);
+  }
+}
+
+console.warn(` Folosind un for afiseaza propozitia: "Numele de
+familie ale prietenilor mei sunt: xxx, xxx , xxx."`);
+var message = 'Numele de familie ale prietenilor mei sunt: ';
+for (i = 0; i < person.friends.length; i++) {
+  var friend = person.friends[i];
+  var punctuation = ', ';
+
+  if (i === person.friends.length - 1) {
+    punctuation = '.';
+  }
+
+  message = `${message}${friend.surname}${punctuation}`;
+}
+
+console.log(message);
+
+console.warn(` Folosind un for, afiseaza numarul
+total de ani pe care il au persoanele din arrayul friends `);
+var sumYears = 0;
+var friendsLength = person.friends.length;
+
+for (i = 0; i < friendsLength; i++) {
+  var friend = person.friends[i];
+  sumYears = sumYears + friend.age;
+}
+console.log(sumYears.toString());
+
+console.warn(
+  `Afiseaza diferenta de varsta dintre persoana si prietenii din arrayul friends. `,
+);
+for (i = 0; i < friendsLength; i++) {
+  var friend = person.friends[i];
+  var diff = Math.abs(person.age - friend.age);
+}
+console.log(diff);
+
+console.warn(`Afiseaza fraza: "Intre Dragos si Larry este o
+diferenta de xx ani. Intre Dragos si Steven... ". Repeta pentru tot arrayul friends.
+`);
+message = '';
+for (i = 0; i < friendsLength; i++) {
+  var friend = person.friends[i];
+  var finalSpace = ' ';
+
+  if (i === friendsLength - 1) {
+    finalSpace = '';
+  }
+  message = `${message}Intre ${person.name} si ${
+    friend.name
+  } este o diferenta de ${Math.abs(friend.age - person.age)} ani.${finalSpace}`;
+}
+console.log(message.trim());
+
+console.warn(`Afiseaza fraza “Prietenii mei sunt: xxx yyy, xxx yyy, xxx yyy.” in ordine
+inversa a arrayului de prieteni. (Numarand de la length la 0).`);
+message = 'Prietenii mei sunt: ';
+for (i = friendsLength - 1; i >= 0; i--) {
+  var friend = person.friends[i];
+  var finalSpace = ', ';
+
+  if (i === 0) {
+    finalSpace = '.';
+  }
+  message = `${message}${friend.name} ${friend.surname}${finalSpace}`;
+}
+console.log(message);
