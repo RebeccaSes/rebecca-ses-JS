@@ -7,3 +7,5 @@ if (true) {
   console.log(globalVariable);
   console.log(localVariable);
 }
+
+console.log(localVariable);

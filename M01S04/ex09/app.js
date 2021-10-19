@@ -66,15 +66,21 @@
 //un numar, o limita inferioara si o limita superioara
 //apoi afiseaza toti multiplii de numar intre limita
 //inferioara si limita superioara introduse.
+
 // var number = window.prompt();
 // var downLimit = window.prompt();
 // var upLimit = window.prompt();
 
-// var i = 1;
+// var i = 0;
 
-// while (downlimit < upLimit) {
-//   console.log(number);
-//   number = number * i;
-//   downlimit = number;
-//   i++;
-// }
+do {
+  i++;
+  if (i < downLimit) {
+    continue;
+  }
+
+  if (i >= number && i & (number === 0)) {
+    console.log(i);
+  }
+  i++;
+} while (i < upLimit);

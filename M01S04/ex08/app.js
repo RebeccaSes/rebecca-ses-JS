@@ -59,10 +59,11 @@
 // var i = 1;
 
 // while (number <= limit) {
+//   i++;
 //   if (number <= 5) {
 //     console.log('Numarul introdus este mai mic sau egal cu 5');
 //   }
 //   console.log(number);
 //   number = number * i;
-//   i++;
+
 // }
