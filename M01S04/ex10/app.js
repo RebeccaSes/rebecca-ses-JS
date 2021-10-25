@@ -39,8 +39,7 @@ var person = {
 
 console.warn(`Folosind obiectul person si forEach, afiseaza skillurile din pozitiile impare ale arrayului.
 `);
-var i = 0;
-person.skills.forEach(function (skill) {
+person.skills.forEach(function (skill, i) {
   if (i % 2 === 0) {
     console.log(person.skills[i]);
   }
@@ -49,8 +48,7 @@ person.skills.forEach(function (skill) {
 
 console.warn(` In mod similar, afiseaza skillurile care contin litera a.
 `);
-var i = 0;
-person.skills.forEach(function (skill) {
+person.skills.forEach(function (skill, i) {
   if (person.skills[i].includes('a') === true) {
     console.log(person.skills[i]);
   }
@@ -60,9 +58,8 @@ person.skills.forEach(function (skill) {
 console.warn(`Folosind forEach afiseaza propozitia:
 "Prietenii mei se numesc xxx yyy, xxx yyy si xxx yyy."`);
 var message = 'Prietenii mei se numesc ';
-var i = 0;
 finalSpace = ', ';
-person.friends.forEach(function (friend) {
+person.friends.forEach(function (friend, i) {
   if (i === person.friends.length - 1) {
     finalSpace = `.`;
   }
@@ -146,8 +143,7 @@ person.skills
 console.warn(
   `Folosind obiectul person si forEach, afiseaza in consola skillurile pe care le are persoana.`,
 );
-var i = 0;
-person.skills.forEach(function (skill) {
+person.skills.forEach(function (skill, i) {
   console.log(person.skills[i]);
 
   i++;
@@ -155,8 +151,7 @@ person.skills.forEach(function (skill) {
 
 console.warn(` In mod similar, afiseaza skillurile care nu incep cu j.
 `);
-var i = 0;
-person.skills.forEach(function (skill) {
+person.skills.forEach(function (skill, i) {
   if (person.skills[i].includes('j', 0) === false) {
     console.log(person.skills[i]);
   }
@@ -166,10 +161,9 @@ person.skills.forEach(function (skill) {
 console.warn(` Folosind forEach afiseaza propozitia:
 "Numele mari ale prietenilor mei sunt xxx, xxx, xxx."
 `);
-var i = 0;
 finalSpace = ', ';
 message = `Numele mari ale prietenilor mei sunt `;
-person.friends.forEach(function (friend) {
+person.friends.forEach(function (friend, i) {
   if (i === person.friends.length - 1) {
     finalSpace = '.';
   }
@@ -219,8 +213,7 @@ console.log(message.trim());
 console.warn(`Folosind metoda reverse si apoi forEach,
 afiseaza in ordine inversa numele complet al prietenilor din arrayul friends.`);
 
-var i = 0;
-person.friends.reverse().forEach(function (friend) {
+person.friends.reverse().forEach(function (friend, i) {
   console.log(`${person.friends[i].name} ${person.friends[i].surname}`);
   i++;
 });
