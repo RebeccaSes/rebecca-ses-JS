@@ -47,3 +47,19 @@ console.log(
 
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get
 console.log(person.email);
+
+console.warn(`Folosind accesorul afiseaza numele persoanei.
+`);
+console.log(`${fullName}`); // variable fullName declared at line 31;
+
+console.warn(`Afiseaza varsta persoanei.
+`);
+const personAge = accessor('Age');
+console.log(`${personAge}`);
+
+console.warn(`Afiseaza anul de nastere al persoanei folosind anul curent.
+Intr-o propozitie de forma “M-am nascut in 1987.”`);
+console.log(`M-am nascut in ${birthYear}.`); // variable birthYear declared at line 33
+
+console.warn(`Afiseaza propozitia “Ma numesc xxx yyy si am aa ani!”`);
+console.log(`Ma numesc ${fullName} si am ${personAge} ani!`);
