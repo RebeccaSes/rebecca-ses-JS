@@ -33,11 +33,11 @@ const car = {
     this.areLightsOn = false;
   },
   flashLights: function () {
-    this.turnLightsOn();
-
     setTimeout(() => {
-      this.turnLightsOff();
+      this.turnLightsOn();
     }, 2000);
+
+    this.turnLightsOff();
   },
   stop: function () {
     this.speed = 0;

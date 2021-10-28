@@ -13,6 +13,8 @@ class Car {
     this.speed = speed;
     this.topSpeed = topSpeed;
     this.topReverseSpeed = topReverseSpeed;
+    this.isTrunkOpen = false;
+    this.areLightsOn = false;
   }
 
   accelerate() {
@@ -43,6 +45,26 @@ class Car {
     }
 
     this.speed = speed;
+  }
+  openTrunk() {
+    this.isTrunkOpen = true;
+  }
+
+  closeTrunk() {
+    this.isTrunkOpen = false;
+  }
+  turnLightsOn() {
+    this.areLightsOn = true;
+  }
+  turnLightsOff() {
+    this.areLightsOn = false;
+  }
+  flashLights() {
+    setTimeout(() => {
+      this.turnLightsOn();
+    }, 2000);
+
+    this.turnLightsOff();
   }
 }
 

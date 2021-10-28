@@ -9,6 +9,11 @@ if (userAgentString.includes('chrome')) {
   browserName = 'Chrome';
 }
 
+// if (userAgentString.includes('mozilla')) {
+//   message = 'Navighezi folosind Mozilla Firefox';
+//   browserName = 'Mozilla';
+// }
+
 paragraphElement.innerText = message;
 
 document.body.append(paragraphElement);
