@@ -13,6 +13,8 @@ $(function () {
     const formData = new FormData(event.currentTarget);
     const person = {
       skills: [],
+      hasPets: false,
+      pets: [],
     };
 
     for (const fieldData of formData.entries()) {
@@ -21,6 +23,29 @@ $(function () {
       if (fieldName.startsWith('skill-')) {
         person.skills.push(fieldValue);
 
+        continue;
+      }
+
+      if (fieldName === 'hasPets') {
+        person.hasPets = true;
+        continue;
+      }
+
+      if (fieldName.startsWith('pet-')) {
+        // destructuring
+        // Twix|Dog|12 -> ['Twix', 'Dog', '12']
+        const [petName, petSpecies, petAge] = fieldValue.split('|');
+
+        person.pets.push({
+          petName: petName,
+          petSpecies: petSpecies,
+          petAge: Number(petAge),
+        });
+        continue;
+      }
+
+      if (fieldName === 'age') {
+        person[fieldName] = Number(fieldValue);
         continue;
       }
 
@@ -155,6 +180,90 @@ $(function () {
     $skillInput.val('');
   });
 
+  $('#hasPets').on('click', function () {
+    const $checkBox = $(this);
+    const isChecked = $checkBox.prop('checked');
+    const $targetFieldset = $checkBox.parent().next();
+
+    if (isChecked === true) {
+      // open pet fieldset
+      $targetFieldset.fadeIn();
+    } else {
+      // close pet fieldset
+      $targetFieldset.fadeOut();
+    }
+  });
+
+  // bad - internationalizare (use id, not title for the button)
+  const $addPetButton = $('button[title="Add pet"]');
+  $addPetButton.on('click', function () {
+    const $addPetButton = $(this);
+    const $petInputs = $addPetButton.siblings('[type="text"]');
+    const petDataArray = [];
+
+    $petInputs.each(function () {
+      const $petInput = $(this);
+      const value = $petInput.val();
+
+      // early return
+      if (value.length <= 0) {
+        return;
+      }
+
+      petDataArray.push(value);
+    });
+
+    if (petDataArray.length < 3) {
+      return;
+    }
+
+    const petData = petDataArray.join(' | ');
+
+    let $petUl = $('.petUl');
+
+    if ($petUl.length <= 0) {
+      $petUl = $('<ul>', {
+        class: 'petUl',
+      });
+      // add to DOM
+      $petUl.insertAfter($addPetButton);
+
+      $petUl.on('click', '.deletePetButton', function () {
+        const $deleteButton = $(this);
+
+        $(this).parent().remove();
+      });
+    }
+
+    $petLi = $('<li>');
+    $('<span>', {
+      class: 'petDataDisplay',
+      text: petData.replaceAll(' | ', ' '),
+    }).appendTo($petLi);
+
+    $('<input>', {
+      class: 'petData',
+      value: petData,
+      type: 'hidden',
+      name: `pet-${petData}`,
+    }).appendTo($petLi);
+
+    $('<button>', {
+      class: 'deletePetButton',
+      type: 'button',
+      text: 'Delete pet',
+    }).appendTo($petLi);
+
+    $('<button>', {
+      class: '',
+    });
+
+    // add $petLi to ul
+    $petUl.append($petLi);
+
+    $petInputs.val('');
+  });
+
   // hoisting
   function renderPerson(person) {
     const $personContainer = $('<article>', {
@@ -169,12 +278,23 @@ $(function () {
       text: `Varsta: ${person.age}`,
     }).appendTo($personContainer);
 
-    let $skillsUl = null;
     if (person.skills.length > 0) {
-      $skillsUl = renderSkillsUl(person.skills);
+      const $skillsUl = renderSkillsUl(person.skills);
+
+      $personContainer.append($skillsUl);
     }
 
-    $personContainer.append($skillsUl);
+    if (person.pets.length > 0) {
+      const $petsUl = renderPetsUl(person.pets);
+
+      $personContainer
+        .append(
+          $('<h2>', {
+            text: 'Pets',
+          }),
+        )
+        .append($petsUl);
+    }
 
     return $personContainer;
   }
@@ -189,6 +309,20 @@ $(function () {
     });
 
     return $skillsUl;
+  }
+
+  function renderPetsUl(petsArray) {
+    const $petsUl = $('<ul>');
+
+    for (let i = 0; i < petsArray.length; i++) {
+      const { petName, petAge, petSpecies } = petsArray[i];
+
+      $('<li>', {
+        text: `${petName}: ${petAge}: ${petSpecies}`,
+      }).appendTo($petsUl);
+    }
+
+    return $petsUl;
   }
 
   function resetForm($form) {
