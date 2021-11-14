@@ -18,6 +18,18 @@ class Car {
     this.carTop.style.backgroundColor = color;
     this.wheelFront.style.backgroundColor = color;
     this.wheelBack.style.backgroundColor = color;
+    this.wheelCapBack.style.backgroundColor = color;
+    this.wheelCapFront.style.backgroundColor = color;
+  }
+
+  changeColorWheelBack(capColor, wheelColor) {
+    this.wheelCapBack.style.backgroundColor = capColor;
+    this.wheelBack.style.backgroundColor = wheelColor;
+  }
+
+  changeColorWheelFront(capColor, wheelColor) {
+    this.wheelCapFront.style.backgroundColor = capColor;
+    this.wheelFront.style.backgroundColor = wheelColor;
   }
 
   turnLightsOn() {
@@ -30,14 +42,24 @@ class Car {
     this.lightFront.classList.remove('light--on');
   }
 
+  engageBreak() {
+    this.lightBack.classList.add('light--back', 'light--on');
+  }
+
+  disengageBreak() {
+    this.lightBack.classList.remove('light--back', 'light--on');
+  }
+
   toggleHazards() {
     if (this.intervalId === null) {
       // start interval
       this.intervalId = setInterval(() => {
         if (this.areLightsOn === true) {
           this.turnLightsOff();
+          this.disengageBreak();
         } else {
           this.turnLightsOn();
+          this.engageBreak();
         }
       }, 800);
     } else {
@@ -45,7 +67,16 @@ class Car {
       clearInterval(this.intervalId);
       this.intervalId = null;
       this.turnLightsOff();
+      this.disengageBreak();
     }
+  }
+
+  flashLights() {
+    this.turnLightsOn();
+
+    setTimeout(() => {
+      this.turnLightsOff();
+    }, 2000);
   }
 
   render() {

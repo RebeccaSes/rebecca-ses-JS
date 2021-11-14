@@ -43,3 +43,34 @@ const $navigation = $('<div>', {
 });
 const $container = $('.container');
 $container.after($navigation);
+
+const $anchor = $('<a></a>', {
+  text: 'Primul link',
+  class: 'nav-link',
+}).appendTo($('.navigation'));
+
+$('<h2>', {
+  text: 'Navigatie',
+})
+  .appendTo($navigation)
+  .before($anchor);
+
+const $sup = $('<sup>', {
+  text: '1',
+}).prependTo($('.nav-link'));
+
+$('<h1>', {
+  text: 'Invat jQuery',
+})
+  .appendTo($navigation)
+  .before($('.container'));
+
+const $newParagraph = $('<p>', {
+  text: 'Documentatia jQuery poate fi gasita ',
+}).appendTo($body);
+
+$('<a></a>', {
+  text: 'aici',
+  href: 'https://code.jquery.com/',
+  target: '_blank',
+}).appendTo($newParagraph);

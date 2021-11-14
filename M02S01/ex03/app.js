@@ -3,8 +3,22 @@ const Car = {
   color: '',
   wheels: 0,
   speed: 0,
-  topSpeed: 10,
+  topSpeed: 140,
   topReverseSpeed: -10,
+  areLightsOn: false,
+  turnLightsOn: function () {
+    this.areLightsOn = true;
+  },
+  turnLightsOff: function () {
+    this.areLightsOn = false;
+  },
+  flashLights: function () {
+    this.turnLightsOn();
+
+    setTimeout(() => {
+      this.turnLightsOff();
+    }, 2000);
+  },
   displaySpeed: function () {
     console.log(`Viteza curenta este ${this.speed}.`);
   },
@@ -25,7 +39,7 @@ const Car = {
 
     this.speed = speed;
 
-    displaySpeed();
+    this.displaySpeed();
   },
 };
 
@@ -38,3 +52,6 @@ audi.topSpeed = 260;
 audi.topReverseSpeed = -100;
 
 console.log(audi);
+
+audi.setSpeed(140);
+audi.accelerate();
