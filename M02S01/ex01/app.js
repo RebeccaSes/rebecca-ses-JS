@@ -60,11 +60,11 @@ class Car {
     this.areLightsOn = false;
   }
   flashLights() {
-    setTimeout(() => {
-      this.turnLightsOn();
-    }, 2000);
+    this.turnLightsOn();
 
-    this.turnLightsOff();
+    setTimeout(() => {
+      this.turnLightsOff();
+    }, 2000);
   }
 }
 

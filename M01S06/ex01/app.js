@@ -43,8 +43,11 @@ const car = {
     this.speed = 0;
   },
   setSpeed: function (speed) {
-    if (speed > this.topSpeed || speed < this.topReverseSpeed) {
-      this.speed = 20;
+    if (speed > this.topSpeed) {
+      speed = this.topSpeed;
+    }
+    if (speed < this.topReverseSpeed) {
+      speed = this.topReverseSpeed;
     }
   },
 };
