@@ -1,3 +1,3 @@
-$(document).ready(function() {
-  // code here
+$(function () {
+  // code here (similar cu DOMContentLoaded)
 });
