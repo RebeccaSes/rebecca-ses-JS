@@ -1,5 +1,7 @@
 const boxControls = document.querySelector('.box-controls');
 const box = document.querySelector('.box');
+const boxes = document.querySelectorAll('.box');
+
 const colorInput = document.getElementById('dynamicColor');
 
 boxControls.addEventListener('click', (event) => {
@@ -16,7 +18,15 @@ boxControls.addEventListener('click', (event) => {
   const button = targetElement;
   const color = button.style.backgroundColor;
 
-  box.style.backgroundColor = color; // insert code here for homework, change box here
+  const selectedRadio = document.querySelector(
+    'input[name="radioGrup"]:checked',
+  );
+
+  if (selectedRadio !== null) {
+    selectedRadio.parentElement.style.backgroundColor = color;
+  }
+
+  // box.style.backgroundColor = color; // insert code here for homework, change box here
 });
 
 boxControls.addEventListener('click', (event) => {
@@ -27,14 +37,20 @@ boxControls.addEventListener('click', (event) => {
   }
 
   const button = targetElement;
-  box.removeAttribute('style');
+  for (let i = 0; i < boxes.length; i++) {
+    boxes[i].removeAttribute('style');
+  }
 });
 
 // add change event for text input
 colorInput.addEventListener('change', (event) => {
+  const selectedRadio = document.querySelector(
+    'input[name="radioGrup"]:checked',
+  );
   // currentTarget = colorInput;
   const input = event.currentTarget;
   const button = input.nextElementSibling;
 
   button.style.backgroundColor = input.value;
+  selectedRadio.parentElement.style.backgroundColor = input.value;
 });

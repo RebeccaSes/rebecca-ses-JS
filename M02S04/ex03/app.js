@@ -16,7 +16,7 @@ const stage = {
 
 // set initial game state
 const gameState = {
-  left: 500,
+  left: 0,
   top: 0,
 };
 
@@ -25,12 +25,17 @@ const increments = 15;
 const speed = {
   forward: increments,
   back: -increments,
+  up: -increments,
+  down: increments,
 };
 
 const orthogonal = {
   x: 'left',
   ArrowLeft: 'left',
   ArrowRight: 'left',
+  ArrowDown: 'top',
+  ArrowUp: 'top',
+  y: 'top',
 };
 
 character.element.style.cssText = generateCssText(gameState);
@@ -54,10 +59,17 @@ controls.addEventListener('click', (event) => {
 
 document.body.addEventListener('keydown', (event) => {
   const key = event.code;
-  const axis = ['ArrowRight', 'ArrowLeft'].includes(key) ? 'x' : 'y';
+
+  // I had no idea how to change this code to make it work for Y axis as well
+  const axis = ['ArrowRight', 'ArrowLeft', 'ArrowDown', 'ArrowUp'].includes(key)
+    ? 'x'
+    : 'y';
+
   const directionOptions = {
     ArrowRight: 'forward',
     ArrowLeft: 'back',
+    ArrowDown: 'forward',
+    ArrowUp: 'back',
   };
   const direction = directionOptions[key];
 
@@ -89,5 +101,15 @@ function preventOutOfBoundsBehavior(gameState) {
   // prevent positive x axis out of bounds
   if (gameState.left >= stage.width - character.width) {
     gameState.left = stage.width - character.width;
+  }
+
+  // prevent negative y axis
+  if (gameState.top <= 0) {
+    gameState.top = 0;
+  }
+
+  // prevent negative y axis
+  if (gameState.top >= stage.height - character.height) {
+    gameState.top = stage.height - character.height;
   }
 }
