@@ -1,0 +1,17 @@
+{
+  "name": "ex05",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "jquery-validation": "^1.19.3",
+    "validation": "0.0.1"
+  }
+}

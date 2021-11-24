@@ -42,9 +42,9 @@
       height: 45px;
       background-color: #000;
       position: absolute;
-      transition: left .3s linear;
-      top: 0;
-      left: 0;
+      transition: left .3s linear, transform .3s linear;
+      transform: translateZ(0);
+      will-change: transform;
     }
   </style>
 </head>
@@ -80,7 +80,8 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- <script src="app.js"></script> -->
+  <script src="app-tr.js"></script>
 </body>
 
 </html>
