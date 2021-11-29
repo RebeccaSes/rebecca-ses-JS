@@ -1,0 +1,35 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+.home-carousel {
+  overflow: hidden;
+  width: 100%;
+}
+
+.home-carousel img {
+  width: 100%;
+}
+
+.home-carousel .slick-next {
+  right: 25px;
+}
+
+.home-carousel .slick-prev {
+  left: 25px;
+}
+
+.home-carousel .slick-arrow {
+  z-index: 1;
+}
+
+.home-carousel .slick-dots {
+  bottom: 25px;
+}
